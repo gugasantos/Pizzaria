@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CardapioController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PedidosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/',[HomeController::class, 'pedido']);
-Route::post('addPedido',[HomeController::class, 'addpedido']);
-
-
+Route::get('/', function () {
+    return redirect()->route('pedido.index');
+});
 
 
-Route::get('cardapio', [CardapioController::class, 'cardapio']);
+Route::resource('pedido',PedidosController::class);
+Route::resource('cardapio',CardapioController::class);
+
+
 
 

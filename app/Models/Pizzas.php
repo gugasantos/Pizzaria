@@ -12,5 +12,6 @@ class Pizzas extends Model
     protected $fillable = [
         'name', 'price', 'description', 'photo'
     ];
+    public $timestamps = false;
     use HasFactory;
 }

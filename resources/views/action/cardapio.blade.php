@@ -4,9 +4,10 @@
 @section('content_header')
     <h1>
     Cardapio
-    <a href="" class="btn btn-sm btn-success">Adicionar Pizza ao cardapio</a>
+    <a href="{{route('cardapio.create')}}" class="btn btn-sm btn-success">Adicionar nova pizza ao cardapio</a>
     </h1>
 @endsection
+
 
 
 @section('content')
@@ -26,10 +27,11 @@
                 <tr>
                     <td>{{$pizza->name}}</td>
                     <td>{{$pizza->description}}</td>
-                    <td>{{$pizza->price}}</td>
+
+                    <td>R$ {{number_format((float)$pizza->price, 2, ',', '')}}</td>
                     <td>
-                        <a href="" class="btn btn-sm btn-info">Editar</a>
-                        <form class="d-inline" action="" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa pizza do cardápio?')">
+                        <a href="{{route('cardapio.edit',[$pizza->id])}}" class="btn btn-sm btn-info">Editar</a>
+                        <form class="d-inline" action="{{route('cardapio.destroy',[$pizza->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa pizza do cardápio?')">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-sm btn-danger">Excluir</button>
@@ -43,5 +45,6 @@
         </table>
     </div>
 </div>
-
+    {{$pizzas->links('pagination::bootstrap-4') }}
 @endsection
+

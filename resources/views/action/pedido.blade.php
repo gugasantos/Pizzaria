@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>
     Pedidos
-    <a href="" class="btn btn-sm btn-success">Adicionar novo pedido</a>
+    <a href="{{route('pedido.create')}}" class="btn btn-sm btn-success">Adicionar novo pedido</a>
     </h1>
 @endsection
 
@@ -32,14 +32,14 @@
                     <td>{{$pedido->address}}</td>
                     <td>{{$pedido->pizza}}</td>
                     <td>{{$pedido->description}}</td>
-                    <td>{{$pedido->price}}</td>
+                    <td>R$ {{number_format((float)$pedido->price, 2, ',', '')}}</td>
                     <td>
                         <a href="" target="_blank" class="btn btn-sm btn-success">Feita</a>
                         <a href="" class="btn btn-sm btn-info">Editar</a>
-                        <form class="d-inline" action="" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir esse pedido?')">
+                        <form class="d-inline" action="{{route('pedido.destroy',[$pedido->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir esse pedido?')">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-sm btn-danger">Excluir</button>
+                            <button class="btn btn-sm btn-danger">Cancelar</button>
                         </form>
                     </td>
                 </tr>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
 use App\Models\Pizzas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CardapioController extends Controller
+class PedidosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +16,10 @@ class CardapioController extends Controller
      */
     public function index()
     {
+        $data = Pedido::all();
 
-        $data = Pizzas::paginate(5);
-        setlocale(LC_MONETARY,'pt_BR');
-        return view('action.cardapio',[
-            'pizzas' => $data
+        return view('action.pedido',[
+            'pedidos' => $data
         ]);
     }
 
@@ -30,7 +30,7 @@ class CardapioController extends Controller
      */
     public function create()
     {
-        return view('action.create');
+        return view('action.createPedido');
     }
 
     /**
@@ -43,31 +43,48 @@ class CardapioController extends Controller
     {
         $data = $request->only([
             'name',
+            'address',
+            'pizza',
+            'description',
             'price',
-            'description'
+
         ]);
         $validator = Validator::make($data,[
             'name' => ['required', 'string', 'max:100'],
+            'address' => ['required', 'string', 'max:100'],
+            'pizza' => ['required', 'string', 'max:100'],
             'price' => ['required', 'string'],
             'description' => ['required', 'string' , 'max:100']
          ]);
 
 
         if($validator->fails()){
-            return redirect()->route('action.create')
+            return redirect()->route('create')
                             ->withErrors($validator)
                             ->withInput();
         }
 
-        $pizza = new Pizzas;
-        $pizza->name = $data['name'];
-        $pizza->price = $data['price'];
-        $pizza->description = $data['description'];
-        $pizza->save();
+        $pedido = new Pedido;
+        $pedido->name = $data['name'];
+        $pedido->address = $data['address'];
+        $pedido->pizza = $data['pizza'];
+        $pedido->price = $data['price'];
+        $pedido->description = $data['description'];
+        $pedido->save();
 
-        return redirect()->route('cardapio.index');
+        return redirect()->route('index');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -77,14 +94,14 @@ class CardapioController extends Controller
      */
     public function edit($id)
     {
-        $data = Pizzas::find($id);
+        $data = Pedido::find($id);
 
         if($data){
-            return view('action.edit',[
-                'pizza' => $data
+            return view('action.editPedido',[
+                'pedido' => $data
             ]);
         }
-        return redirect()->route('cardapio.index');
+        return redirect()->route('index');
     }
 
     /**
@@ -96,32 +113,7 @@ class CardapioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pedido = Pizzas::find($id);
-        if($pedido){
-            $data = $request->only([
-                'name',
-                'price',
-                'description'
-            ]);
-            $validator = Validator::make($data,[
-                'name' => ['required', 'string', 'max:100'],
-                'price' => ['required', 'string'],
-                'description' => ['required', 'string' , 'max:100']
-
-            ]);
-            if($validator->fails()){
-                return redirect()->route('cardapio.create')
-                                ->withErrors($validator)
-                                ->withInput();
-            }
-        }
-        $pedido->name = $data['name'];
-        $pedido->price = $data['price'];
-        $pedido->description = $data['description'];
-        $pedido->save();
-
-        return redirect()->route('cardapio.index');
-
+        //
     }
 
     /**
@@ -132,9 +124,9 @@ class CardapioController extends Controller
      */
     public function destroy($id)
     {
-        $data = Pizzas::find($id);
+        $data = Pedido::find($id);
         $data->delete();
 
-        return redirect()->route('cardapio.index');
+        return redirect()->route('pedido.index');
     }
 }
