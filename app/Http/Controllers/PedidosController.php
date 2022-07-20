@@ -113,7 +113,38 @@ class PedidosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pedido = Pedido::find($id);
+
+        if($pedido){
+            $data = $request->only([
+            'name',
+            'address' ,
+            'pizza' ,
+            'price',
+            'description'
+            ]);
+            $validator = Validator::make($data,[
+                'name' => ['required', 'string', 'max:100'],
+                'address' => ['required', 'string', 'max:100'],
+                'pizza' => ['required', 'string', 'max:100'],
+                'price' => ['required', 'string'],
+                'description' => ['required', 'string' , 'max:100']
+
+                ]);
+            if($validator->fails()){
+                return redirect()->route('pedido.create')
+                                ->withErrors($validator)
+                                ->withInput();
+            }
+        }
+        $pedido->name = $data['name'];
+        $pedido->address = $data['address'];
+        $pedido->pizza = $data['pizza'];
+        $pedido->price = $data['price'];
+        $pedido->description = $data['description'];
+        $pedido->save();
+
+        return redirect()->route('pedido.index');
     }
 
     /**

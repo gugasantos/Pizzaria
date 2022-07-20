@@ -35,7 +35,7 @@
                     <td>R$ {{number_format((float)$pedido->price, 2, ',', '')}}</td>
                     <td>
                         <a href="" target="_blank" class="btn btn-sm btn-success">Feita</a>
-                        <a href="" class="btn btn-sm btn-info">Editar</a>
+                        <a href="{{route('pedido.edit',[$pedido->id])}}" class="btn btn-sm btn-info">Editar</a>
                         <form class="d-inline" action="{{route('pedido.destroy',[$pedido->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir esse pedido?')">
                             @method('DELETE')
                             @csrf
