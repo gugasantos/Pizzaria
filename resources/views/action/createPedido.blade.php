@@ -45,8 +45,21 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Pizzas</label>
                     <div class="col-sm-10">
-                        <textarea name="pizza" class="form-control" >{{old('pizza')}}</textarea>
+                        <textarea name="pizza" class="form-control" id='pizza' >{{old('pizza')}}</textarea>
 
+                        <div>
+<script>
+    function chaleira(){
+        document.getElementById('pizza')="aloha";
+    }
+</script>
+
+                            <select onclick="chaleira()">
+                                @foreach ($lista as $pizza)
+                                <option value="pizza">{{$pizza}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
 

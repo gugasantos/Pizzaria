@@ -13,13 +13,17 @@ class DashoboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $day = $request->interval ? $request->interval:30;
+        $interval = intval($request->input('interval',30));
         //contagem de pizzas
         $pizzacount = (Pizzas::all()->count());
 
         //contagem de pedidos
-        $pedidoscount = (Pedido::all()->count());
+        $datelimit = date('Y-m-d H:i:s', strtotime('-'.$interval. 'days'));
+        #dd($datelimit);
+        $pedidoscount = (Pedido::select('id')->where('created_at','>=',$datelimit)->count());
 
         //contagem de valor adquirido até então
         $lucros = array();
@@ -32,7 +36,9 @@ class DashoboardController extends Controller
         return view('action.dashboard',[
             'pizza' => $pizzacount,
             'pedidos' => $pedidoscount,
-            'valor' => $lucros
+            'valor' => $lucros,
+            'dateInterval' => $interval,
+            'days' => $day
         ]);
     }
 }

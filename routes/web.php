@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::resource('pedido',PedidosController::class);
 Route::resource('cardapio',CardapioController::class);
-Route::get('dashboard', [DashoboardController::class, 'index']);
+Route::get('dashboard', [DashoboardController::class, 'index'])->name('dashboard');
 
 
 

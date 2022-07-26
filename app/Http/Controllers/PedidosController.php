@@ -30,7 +30,15 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        return view('action.createPedido');
+        $lista = array();
+        $ref = Pizzas::all();
+        foreach($ref as $r){
+            array_push($lista,$r->name);
+        }
+        sort($lista);
+        return view('action.createPedido',[
+            'lista' => $lista
+        ]);
     }
 
     /**
@@ -72,7 +80,7 @@ class PedidosController extends Controller
         $pedido->description = $data['description'];
         $pedido->save();
 
-        return redirect()->route('index');
+        return redirect()->route('pedido.index');
     }
 
     /**

@@ -17,9 +17,9 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th width='50'>Nome</th>
-                    <th width='200'>Descrição</th>
-                    <th width='200'>Valor</th>
+                    <th width='250'>Nome</th>
+                    <th width='530'>Descrição</th>
+                    <th style="text-align:center" width='200'>Valor</th>
                 </tr>
             </thead>
            <tbody>
@@ -28,7 +28,7 @@
                     <td>{{$pizza->name}}</td>
                     <td>{{$pizza->description}}</td>
 
-                    <td>R$ {{number_format((float)$pizza->price, 2, ',', '')}}</td>
+                    <td style="text-align:center">R$ {{number_format((float)$pizza->price, 2, ',', '')}}</td>
                     <td>
                         <a href="{{route('cardapio.edit',[$pizza->id])}}" class="btn btn-sm btn-info">Editar</a>
                         <form class="d-inline" action="{{route('cardapio.destroy',[$pizza->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa pizza do cardápio?')">

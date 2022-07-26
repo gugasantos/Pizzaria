@@ -16,7 +16,7 @@ class CardapioController extends Controller
     public function index()
     {
 
-        $data = Pizzas::paginate(5);
+        $data = Pizzas::paginate(10);
         setlocale(LC_MONETARY,'pt_BR');
         return view('action.cardapio',[
             'pizzas' => $data
