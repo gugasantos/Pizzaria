@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nova Página')
+@section('title', 'Nova Pizza')
 
 @section('content_header')
     <h1>
@@ -53,6 +53,7 @@
                     <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
                         <input type="submit" value="Criar" class="btn btn-success">
+                        <a href="{{route('cardapio.index')}}" class="btn btn-danger">Voltar</a>
                     </div>
                 </div>
 

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Minhas Páginas')
+@section('title', 'Marinara Pizzaria')
 
 @section('content_header')
     <h1>
@@ -26,23 +26,27 @@
                 </tr>
             </thead>
            <tbody>
+
             @foreach ($pedidos as $pedido)
-                <tr>
-                    <td>{{$pedido->name}}</td>
-                    <td>{{$pedido->address}}</td>
-                    <td>{{$pedido->pizza}}</td>
-                    <td>{{$pedido->description}}</td>
-                    <td>R$ {{number_format((float)$pedido->price, 2, ',', '')}}</td>
-                    <td>
-                        <a href="" target="_blank" class="btn btn-sm btn-success">Feita</a>
-                        <a href="{{route('pedido.edit',[$pedido->id])}}" class="btn btn-sm btn-info">Editar</a>
-                        <form class="d-inline" action="{{route('pedido.destroy',[$pedido->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar esse pedido?')">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-sm btn-danger">Cancelar</button>
-                        </form>
-                    </td>
-                </tr>
+                @if (($pedido->fineshed) === 0)
+                    <tr>
+                        <td>{{$pedido->name}}</td>
+                        <td>{{$pedido->address}}</td>
+                        <td>{{$pedido->pizza}}</td>
+                        <td>{{$pedido->description}}</td>
+                        <td>R$ {{number_format((float)$pedido->price, 2, ',', '')}}</td>
+                        <td>
+                            <a href="{{route('pedido.show',[$pedido->id])}}" class="btn btn-sm btn-success">Feita</a>
+                            <a href="{{route('pedido.edit',[$pedido->id])}}" class="btn btn-sm btn-info">Editar</a>
+                            <form class="d-inline" action="{{route('pedido.destroy',[$pedido->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar esse pedido?')">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-sm btn-danger">Cancelar</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endif
+
             @endforeach
            </tbody>
 

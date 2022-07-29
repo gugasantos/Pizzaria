@@ -2,7 +2,7 @@
 
 @section('plugins.Chartjs', true)
 
-@section('title','Painel')
+@section('title','Painel Marinara')
 
 @section('content')
     <div class="row">
@@ -13,8 +13,9 @@
         <div class="col-md-6">
             <form action="{{route('dashboard')}}" method="GET" class="form-horizontal">
                 <div class="float-md-right" style="display: flex">
-                    Intervalo: <input type="number" name="interval" value="{{$days}}" class="form-control" style="margin: 0 15px; width:5rem">
-                    <input type="submit" value="Calcular" class="btn btn-success">
+                    <h5>Intervalo de dias:</h5>
+                    <input type="number" name="interval" value="{{$days}}" class="form-control" style="margin: 0 15px; width:5rem">
+                    <input type="submit" value="Calcular" class="btn btn-danger">
                 </div>
             </form>
 

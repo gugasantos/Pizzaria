@@ -17,6 +17,7 @@ class PedidosController extends Controller
     public function index()
     {
         $data = Pedido::all();
+        //dd(Pedido::select('fineshed'));
 
         return view('action.pedido',[
             'pedidos' => $data
@@ -67,7 +68,7 @@ class PedidosController extends Controller
 
 
         if($validator->fails()){
-            return redirect()->route('create')
+            return redirect()->route('pedido.create')
                             ->withErrors($validator)
                             ->withInput();
         }
@@ -91,7 +92,12 @@ class PedidosController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Pedido::find($id);
+
+        $data->fineshed = 1;
+        $data->save();
+
+        return back();
     }
 
     /**

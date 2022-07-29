@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -228,9 +228,10 @@ return [
 
         ['header' => 'Painel'],
         [
-            'text' => 'Pedidos',
-            'url'  => '/',
-            'icon' => 'nav-icon fas fa-fw fa-user',
+            'text'    => 'Dashboard',
+            'url'     => 'dashboard',
+            'icon'    => 'nav-icon fas fa-tachometer-alt',
+
         ],
         [
             'text' => 'Cardápio de Pizzas',
@@ -238,10 +239,9 @@ return [
             'icon' => 'nav-icon fas fa-th',
         ],
         [
-            'text'    => 'Dashboard',
-            'url'     => 'dashboard',
-            'icon'    => 'nav-icon fas fa-tachometer-alt',
-
+            'text' => 'Pedidos',
+            'url'  => 'pedido',
+            'icon' => 'nav-icon fas fa-fw fa-user',
         ],
     ],
 

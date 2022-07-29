@@ -54,7 +54,7 @@ class CardapioController extends Controller
 
 
         if($validator->fails()){
-            return redirect()->route('action.create')
+            return redirect()->route('cardapio.create')
                             ->withErrors($validator)
                             ->withInput();
         }

@@ -23,11 +23,12 @@ class DashoboardController extends Controller
         //contagem de pedidos
         $datelimit = date('Y-m-d H:i:s', strtotime('-'.$interval. 'days'));
         #dd($datelimit);
-        $pedidoscount = (Pedido::select('id')->where('created_at','>=',$datelimit)->count());
+        $pedidoscount = (Pedido::all()->where('created_at','>=',$datelimit)->count());
 
         //contagem de valor adquirido até então
         $lucros = array();
-        $lucrocount = (pedido::all());
+
+        $lucrocount = (pedido::all()->where('created_at','>=',$datelimit));
         foreach($lucrocount as $lucro){
             array_push($lucros, $lucro->price);
         }
