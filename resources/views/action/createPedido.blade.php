@@ -46,20 +46,27 @@
                     <label class="col-sm-2 col-form-label">Pizzas</label>
                     <div class="col-sm-10">
                         <textarea name="pizza" class="form-control" id='pizza' >{{old('pizza')}}</textarea>
+<!--<div>
+    <script>
+        function chaleira(){
+            document.getElementById('pizza')="aloha";
+        }
+    </script>
 
-                        <div>
-<script>
-    function chaleira(){
-        document.getElementById('pizza')="aloha";
-    }
-</script>
+    <select onclick="chaleira()">
+        @foreach ($lista as $pizza)
+            <option value="pizza">{{$pizza}}</option>
+        @endforeach
+    </select>
+</div>-->
+                    </div>
+                </div>
 
-                            <select onclick="chaleira()">
-                                @foreach ($lista as $pizza)
-                                <option value="pizza">{{$pizza}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Borda</label>
+                    <div class="col-sm-10">
+                        <input type="radio" value="op1" name = "borda" checked> Não
+                        <input type="radio" value="op2" name = "borda"> Sim
                     </div>
                 </div>
 

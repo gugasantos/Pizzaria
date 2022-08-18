@@ -56,6 +56,7 @@ class PedidosController extends Controller
             'pizza',
             'description',
             'price',
+            'borda',
 
         ]);
         $validator = Validator::make($data,[
@@ -79,6 +80,9 @@ class PedidosController extends Controller
         $pedido->pizza = $data['pizza'];
         $pedido->price = $data['price'];
         $pedido->description = $data['description'];
+        if($data['borda'] === 'op2'){
+            $pedido->borda = 1;
+        }
         $pedido->save();
 
         return redirect()->route('pedido.index');

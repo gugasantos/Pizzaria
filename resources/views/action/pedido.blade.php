@@ -17,11 +17,12 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th width='50'>Nome</th>
+                    <th>Nome</th>
                     <th>Endreço</th>
-                    <th>pizzas</th>
+                    <th>Pizzas</th>
+                    <th>Borda</th>
                     <th>Descrição</th>
-                    <th>valor total</th>
+                    <th>Valor total</th>
                     <th width='200'>Ações</th>
                 </tr>
             </thead>
@@ -33,6 +34,12 @@
                         <td>{{$pedido->name}}</td>
                         <td>{{$pedido->address}}</td>
                         <td>{{$pedido->pizza}}</td>
+                        @if (($pedido->borda == 1))
+                            <td>Sim</td>
+                        @else
+                            <td>Não</td>
+                        @endif
+
                         <td>{{$pedido->description}}</td>
                         <td>R$ {{number_format((float)$pedido->price, 2, ',', '')}}</td>
                         <td>
