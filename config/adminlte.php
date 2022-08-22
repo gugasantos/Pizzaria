@@ -239,6 +239,11 @@ return [
             'icon' => 'nav-icon fas fa-th',
         ],
         [
+            'text' => 'Clientes',
+            'url'  => 'clientes',
+            'icon' => 'nav-icon fas fa-fw fa-user',
+        ],
+        [
             'text' => 'Pedidos',
             'url'  => 'pedido',
             'icon' => 'nav-icon fas fa-fw fa-user',
