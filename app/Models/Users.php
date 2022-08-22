@@ -9,7 +9,7 @@ class Users extends Model
 {
     protected $table = 'users';
     protected $fillable = [
-        'name', 'address'
+        'name', 'address', 'phone'
     ];
     public $timestamps = false;
     use HasFactory;
